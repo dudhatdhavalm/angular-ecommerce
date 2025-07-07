@@ -9,22 +9,28 @@ module.exports = function (config) {
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
-      require('karma-coverage-istanbul-reporter'),
+      // Updated: replaced karma-coverage-istanbul-reporter with karma-coverage for Angular 11
+      require('karma-coverage'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
-    coverageIstanbulReporter: {
+    // Updated: replaced coverageIstanbulReporter with coverageReporter for Angular 11
+    coverageReporter: {
       dir: require('path').join(__dirname, './coverage/angular-ecommerce'),
-      reports: ['html', 'lcovonly', 'text-summary'],
-      fixWebpackSourcePaths: true
+      subdir: '.',
+      reporters: [
+        { type: 'html' },
+        { type: 'text-summary' }
+      ]
     },
     reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
+    // No change needed for browsers, but you could add ChromeHeadless for CI environments
     browsers: ['Chrome'],
     singleRun: false,
     restartOnFileChange: true

@@ -5,10 +5,10 @@
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
+    "downlevelIteration": true, // Added for Angular 11 compatibility
     "experimentalDecorators": true,
+    "module": "es2020", // Updated from esnext to es2020 for Angular 11
+    "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2015",
     "typeRoots": [
@@ -18,5 +18,8 @@
       "es2018",
       "dom"
     ]
+  },
+  "angularCompilerOptions": {
+    "enableIvy": true // Added to explicitly enable Ivy compiler
   }
 }

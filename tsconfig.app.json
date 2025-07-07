@@ -1,14 +1,15 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "./out-tsc/app",
+    "outDir": "../out-tsc/app", // Changed from "./out-tsc/app" to "../out-tsc/app" to match Angular 11 conventions
     "types": []
   },
-  "include": [
-    "src/**/*.ts"
+  "files": [ // Added explicit files array to specify entry points
+    "src/main.ts",
+    "src/polyfills.ts"
   ],
-  "exclude": [
-    "src/test.ts",
-    "src/**/*.spec.ts"
+  "include": [
+    "src/**/*.d.ts" // Changed from "src/**/*.ts" to only include declaration files
   ]
+  // Removed "exclude" array as it's no longer needed with the specific "files" and "include" configuration
 }

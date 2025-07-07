@@ -1,13 +1,13 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../out-tsc/e2e",
+    "outDir": "../out-tsc/app-e2e", // Updated outDir from "e2e" to "app-e2e" to match Angular 11 conventions
     "module": "commonjs",
-    "target": "es5",
+    "target": "es6", // Updated from "es5" to "es6" for better compatibility with Angular 11
     "types": [
       "jasmine",
-      "jasminewd2",
       "node"
     ]
+    // Removed "jasminewd2" from types as it's no longer needed in Angular 11
   }
 }
