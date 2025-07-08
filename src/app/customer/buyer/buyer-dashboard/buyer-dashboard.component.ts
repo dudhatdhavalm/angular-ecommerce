@@ -9,16 +9,20 @@ import { CustomerService } from '../../services/customer.service';
 })
 export class BuyerDashboardComponent implements OnInit {
 
-  all_products;
-  show_checkout: Boolean = false;
+  // Added type for all_products to satisfy strict mode
+  all_products: any;
+  // Changed Boolean (object) to boolean (primitive type) to satisfy strict mode
+  show_checkout = false;
 
   constructor(private router: Router, private customerService: CustomerService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    // Added return type to ngOnInit to satisfy strict mode
     this.getAllProduct()
   }
 
-  getAllProduct() {
+  getAllProduct(): void {
+    // Added return type to method to satisfy strict mode
     this.customerService.allProduct().subscribe(data => {
       this.all_products = data;
       // console.log("ALl Product", this.all_products);
@@ -27,13 +31,15 @@ export class BuyerDashboardComponent implements OnInit {
     })
   }
 
-  buyProduct(id) {
+  buyProduct(id: any): void {
+    // Added parameter type and return type to satisfy strict mode
     this.show_checkout = true;
     this.customerService.quickBuyProduct(id) //We pass to serice from service we can access in another component
     this.router.navigateByUrl("/checkout");
   }
 
-  addToCart() {
+  addToCart(): void {
+    // Added return type to satisfy strict mode
     alert("This a showcase, if you need this feature comment in the comment section")
   }
 

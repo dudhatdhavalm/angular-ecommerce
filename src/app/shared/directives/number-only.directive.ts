@@ -7,7 +7,8 @@ export class NumberOnlyDirective {
 
   constructor(private _el: ElementRef) { }
 
-  @HostListener('input', ['$event']) onInputChange(event) {
+  // Updated event parameter with explicit type for Angular 12 strict type checking
+  @HostListener('input', ['$event']) onInputChange(event: Event) {
     const initalValue = this._el.nativeElement.value;
     if (initalValue == 0) {
       this._el.nativeElement.value = "";

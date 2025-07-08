@@ -12,25 +12,26 @@ declare var jQuery: any;
 })
 export class UserCrudComponent implements OnInit {
 
-  all_user_data;
-  single_user_data;
-  addEditUserForm: FormGroup;
-  user_dto: User;
-  user_reg_data;
-  edit_user_id;
-  upload_file_name: string;
+  // Added type annotations to class properties for Angular 12 strict mode
+  all_user_data: any;
+  single_user_data: any;
+  addEditUserForm!: FormGroup; // Using non-null assertion as it's initialized in ngOnInit
+  user_dto!: User;
+  user_reg_data: any;
+  edit_user_id: any;
+  upload_file_name: string = ''; // Initialized with default value
 
-  addEditUser = false;//for form validation
+  addEditUser: boolean = false; // for form validation
 
-  add_user: Boolean = false;
-  edit_user: Boolean = false;
-  popup_header: string;
+  add_user: boolean = false;
+  edit_user: boolean = false;
+  popup_header: string = ''; // Initialized with default value
 
   signInFormValue: any = {};
 
   constructor(private formBuilder: FormBuilder, private router: Router, private admin_service: AdminService) { }
 
-  ngOnInit() {
+  ngOnInit(): void { // Added return type for lifecycle hook
     this.getAllUser();
     this.addEditUserForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -50,30 +51,32 @@ export class UserCrudComponent implements OnInit {
       uploadPhoto: [],
       agreetc: ['', Validators.required],
       role: ['', Validators.required]
-    })
+    });
   }
 
-  getAllUser() {
+  getAllUser(): void { // Added return type
     this.admin_service.allUser().subscribe(data => {
       this.all_user_data = data;
       // console.log("getAllUser",this.all_user_data);
     }, error => {
       console.log("My error", error);
-    })
+    });
   }
+  
   get rf() { return this.addEditUserForm.controls; }
 
   //popup when add
-  addUserPopup() {
+  addUserPopup(): void { // Added return type
     this.edit_user = false;
     this.add_user = true;
     this.popup_header = "Add New User";
     this.addEditUserForm.reset();
   }
-  addUser() {
+  
+  addUser(): void { // Added return type
     this.addEditUser = true;
     if (this.addEditUserForm.invalid) {
-      alert('Error!! :-)\n\n' + JSON.stringify(this.addEditUserForm.value))
+      alert('Error!! :-)\n\n' + JSON.stringify(this.addEditUserForm.value));
       return;
     }
     // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.addEditUserForm.value))
@@ -100,17 +103,17 @@ export class UserCrudComponent implements OnInit {
       uploadPhoto: this.user_reg_data.uploadPhoto,
       agreetc: this.user_reg_data.agreetc,
       role: this.user_reg_data.role
-    }
+    };
     this.admin_service.addUser(this.user_dto).subscribe(data => {
       this.getAllUser();
       jQuery('#addEditUserModal').modal('toggle');
     }, err => {
       alert("Some Error Occured");
-    })
+    });
   }
 
   // popup when edit
-  editUserPopup(user_id) {
+  editUserPopup(user_id: any): void { // Added parameter type and return type
     this.edit_user_id = user_id;
     this.edit_user = true;
     this.add_user = false;
@@ -137,13 +140,14 @@ export class UserCrudComponent implements OnInit {
         uploadPhoto: '',
         agreetc: this.single_user_data.agreetc,
         role: this.single_user_data.role,
-      })
+      });
       // console.log("Individual User", this.single_user_data);
     }, error => {
       console.log("My error", error);
-    })
+    });
   }
-  updateUser() {
+  
+  updateUser(): void { // Added return type
     if (this.addEditUserForm.invalid) {
       // alert('Error!! :-)\n\n' + JSON.stringify(this.addEditUserForm.value))
       return;
@@ -172,20 +176,20 @@ export class UserCrudComponent implements OnInit {
       uploadPhoto: (this.user_reg_data.uploadPhoto == "" ? this.upload_file_name : this.user_reg_data.uploadPhoto),
       agreetc: this.user_reg_data.agreetc,
       role: this.user_reg_data.role
-    }
+    };
     this.admin_service.editUser(this.edit_user_id, this.user_dto).subscribe(data => {
       this.getAllUser();
       jQuery('#addEditUserModal').modal('toggle');
     }, err => {
       alert("Some Error Occured");
-    })
+    });
   }
-  deleteUser(user_id) {
+  
+  deleteUser(user_id: any): void { // Added parameter type and return type
     this.admin_service.deleteUser(user_id).subscribe(data => {
       this.getAllUser();
     }, err => {
       alert("Some Error Occured");
-    })
+    });
   }
-
 }

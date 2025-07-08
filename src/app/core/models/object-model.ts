@@ -1,4 +1,5 @@
 export class User {
+    // No changes needed for this class in Angular 12 upgrade
     aboutYou: string;
     age: number;
     agreetc: boolean;
@@ -16,6 +17,7 @@ export class User {
 }
 
 export class Address {
+    // No changes needed for this class in Angular 12 upgrade
     id: number;
     addLine1: string;
     addLine2: string;
@@ -25,6 +27,7 @@ export class Address {
 }
 
 export class Product {
+    // No changes needed for this class in Angular 12 upgrade
     id: number;
     name: string;
     uploadPhoto: string;
@@ -35,6 +38,7 @@ export class Product {
 }
 
 export class Order {
+    // No changes needed for this class in Angular 12 upgrade
     id: number;
     userId: number;
     sellerId: number;

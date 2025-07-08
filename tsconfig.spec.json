@@ -2,10 +2,12 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/spec",
+    "module": "commonjs", // Updated: Set module to commonjs for Angular 12
     "types": [
       "jasmine",
       "node"
-    ]
+    ],
+    "lib": ["ES2020", "DOM"] // Added: ES2020 to lib array for Angular 12 compatibility
   },
   "files": [
     "src/test.ts",

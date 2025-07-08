@@ -1,6 +1,7 @@
 {
-  "extends": "tslint:recommended",
+  "extends": ["tslint:recommended", "tslint-angular"],
   "rules": {
+    // Keeping existing rule overrides from the original file
     "array-type": false,
     "arrow-parens": false,
     "deprecation": {
@@ -60,7 +61,7 @@
     "no-non-null-assertion": true,
     "no-redundant-jsdoc": true,
     "no-switch-case-fall-through": true,
-    "no-use-before-declare": true,
+    // Removed "no-use-before-declare" as it's deprecated in TypeScript 4.x
     "no-var-requires": false,
     "object-literal-key-quotes": [
       true,

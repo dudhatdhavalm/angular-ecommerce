@@ -27,20 +27,24 @@ export class AdminService {
     return this.apiService.get(this.all_user);
   }
 
-  addUser(user_dto): Observable<any> {
+  // Updated to use proper TypeScript parameter typing
+  addUser(user_dto: any): Observable<any> {
     return this.apiService.post(this.user_url, user_dto);
   }
 
   //get data of individual user
-  singleUser(user_id) {
+  // Updated to use proper TypeScript parameter typing
+  singleUser(user_id: string | number) {
     return this.apiService.get(this.user_url + user_id);
   }
   //update data of individual user
-  editUser(user_id, user_dto): Observable<any> {
+  // Updated to use proper TypeScript parameter typing
+  editUser(user_id: string | number, user_dto: any): Observable<any> {
     return this.apiService.put(this.user_url + user_id, user_dto);
   }
   //Delete individual user
-  deleteUser(user_id) {
+  // Updated to use proper TypeScript parameter typing
+  deleteUser(user_id: string | number) {
     return this.apiService.delete(this.user_url + user_id);
   }
 }

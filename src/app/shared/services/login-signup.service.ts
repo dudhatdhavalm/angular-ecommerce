@@ -13,14 +13,18 @@ export class LoginSignupService {
 
   constructor(private http: HttpClient, private apiService: ApiService) { }
 
-  authLogin(user_name, password): Observable<any> {
+  // Updated method signature with proper TypeScript parameter types
+  authLogin(user_name: string, password: string): Observable<any> {
     return this.apiService.get(this.login_url + '/user?email=' + user_name + '&password=' + password);
   }
-  userRegister(user_dto): Observable<any> {
+  
+  // Updated method signature with proper TypeScript parameter type
+  userRegister(user_dto: any): Observable<any> {
     return this.apiService.post(this.reg_url + '/user', user_dto);
   }
 
-  adminLogin(user_name, password): Observable<any> {
+  // Updated method signature with proper TypeScript parameter types
+  adminLogin(user_name: string, password: string): Observable<any> {
     return this.apiService.get(this.login_url + '/user?email=' + user_name + '&password=' + password + '&role=admin');
   }
 }

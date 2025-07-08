@@ -3,6 +3,8 @@
   "compilerOptions": {
     "outDir": "./out-tsc/app",
     "types": []
+    // Removed any target or module settings to inherit from root tsconfig.json
+    // Angular 12 uses ES2020 by default from the root config
   },
   "include": [
     "src/**/*.ts"

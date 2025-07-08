@@ -35,7 +35,11 @@
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js"
-            ]
+            ],
+            "outputHashing": "all", // Added for Angular 12 upgrade
+            "vendorChunk": false, // Added for Angular 12 upgrade
+            "buildOptimizer": true, // Added for Angular 12 upgrade
+            "sourceMap": true // Added for Angular 12 upgrade
           },
           "configurations": {
             "production": {
@@ -48,9 +52,9 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
+              // Removed extractCss as it's deprecated in Angular 12
               "namedChunks": false,
-              "aot": true,
+              // Removed aot as it's now on by default in Angular 12
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -59,6 +63,11 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle", // Added for Angular 12 upgrade - component CSS budget
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
                 }
               ]
             }

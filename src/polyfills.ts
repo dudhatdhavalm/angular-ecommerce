@@ -20,6 +20,7 @@
 
 /** IE10 and IE11 requires the following for NgClass support on SVG elements */
 // import 'classlist.js';  // Run `npm install --save classlist.js`.
+// Commented out as part of Angular 12 upgrade - IE-specific polyfills are no longer needed for evergreen browsers
 
 /**
  * Web Animations `@angular/platform-browser/animations`
@@ -27,6 +28,7 @@
  * Standard animation support in Angular DOES NOT require any polyfills (as of Angular 6.0).
  */
 // import 'web-animations-js';  // Run `npm install --save web-animations-js`.
+// Commented out as part of Angular 12 upgrade - IE-specific polyfills are no longer needed for evergreen browsers
 
 /**
  * By default, zone.js will patch all possible macroTask and DomEvents
@@ -55,7 +57,8 @@
 /***************************************************************************************************
  * Zone JS is required by default for Angular itself.
  */
-import 'zone.js/dist/zone';  // Included with Angular CLI.
+import 'zone.js';  // Included with Angular CLI.
+// Updated import path from 'zone.js/dist/zone' to 'zone.js' as per Angular 12 requirements
 
 
 /***************************************************************************************************
