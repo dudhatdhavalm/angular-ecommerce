@@ -5,18 +5,20 @@
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
-    "module": "esnext",
+    "module": "ES2020", // Updated from esnext to ES2020 for Angular 12
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "target": "es2015",
+    "target": "ES2020", // Updated from es2015 to ES2020 for Angular 12
     "typeRoots": [
       "node_modules/@types"
     ],
     "lib": [
-      "es2018",
-      "dom"
-    ]
+      "ES2020", // Updated from es2018 to ES2020 for Angular 12
+      "DOM" // Updated to uppercase DOM for consistency
+    ],
+    "strict": true, // Added for Angular 12 strict type checking
+    "skipLibCheck": true // Added to skip type checking of library declaration files
   }
 }

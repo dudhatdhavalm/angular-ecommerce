@@ -9,29 +9,33 @@ import { CustomerService } from '../../services/customer.service';
 })
 export class SellerDashboardComponent implements OnInit {
 
-  order_dashboard_data;
-  total_order;
-  last_order_date;
+  // Added type annotations to satisfy strict mode in Angular 12
+  order_dashboard_data: any;
+  total_order: number | undefined;
+  last_order_date: any;
 
-  product_dashboard_data;
-  total_product: number = 0;
-  publish_product: number = 0;
-  inactive_product: number = 0;
-  draft_product: number = 0;
+  product_dashboard_data: any;
+  total_product = 0; // Simplified initialization since type is inferred
+  publish_product = 0;
+  inactive_product = 0;
+  draft_product = 0;
 
   constructor(private router: Router, private customerService: CustomerService) { }
 
-  ngOnInit() {
+  ngOnInit(): void { // Added return type for lifecycle hook
     this.sellerOrderDashboardData();
     this.sellerProductDashboardData();
   }
-  sellerProductDashboard() {
+  
+  sellerProductDashboard(): void { // Added return type
     this.router.navigateByUrl("/seller/product");
   }
-  sellerOrderDashboard() {
+  
+  sellerOrderDashboard(): void { // Added return type
     alert("WIP")
   }
-  sellerOrderDashboardData() {
+  
+  sellerOrderDashboardData(): void { // Added return type
     this.customerService.orderDashboardData().subscribe(data => {
       this.order_dashboard_data = data;
       this.total_order = Number(this.order_dashboard_data.length);
@@ -42,10 +46,11 @@ export class SellerDashboardComponent implements OnInit {
     })
   }
 
-  sellerProductDashboardData() {
+  sellerProductDashboardData(): void { // Added return type
     this.customerService.productDashboardData().subscribe(data => {
       this.product_dashboard_data = data;
-      for (status in this.product_dashboard_data) {
+      // Fixed for-in loop by adding proper variable declaration with 'let'
+      for (let status in this.product_dashboard_data) {
         // console.log(this.product_dashboard_data[status].status);
         if (this.product_dashboard_data[status].status == 'publish') {
           ++this.publish_product;

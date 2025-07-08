@@ -10,24 +10,25 @@ import { Product, User, Order } from '../../../core/models/object-model';
 })
 export class CheckoutComponent implements OnInit {
 
-  single_product_id: number;
-  user_id: number;
-  individual_product: Product;
-  user_detail: User;
-  user_address;
-  user_contact_no: Number;
-  order_dto: Order;
+  // Changed type annotations to be more specific and lowercase primitive types
+  single_product_id!: number; // Added non-null assertion operator for strict mode
+  user_id!: number; // Added non-null assertion operator for strict mode
+  individual_product!: Product; // Added non-null assertion operator for strict mode
+  user_detail!: User; // Added non-null assertion operator for strict mode
+  user_address: any; // Added explicit any type
+  user_contact_no!: number; // Changed from Number to lowercase number for primitive type
+  order_dto!: Order; // Added non-null assertion operator for strict mode
 
   constructor(private customerService: CustomerService, private router: Router) { }
 
-  ngOnInit() {
+  ngOnInit(): void { // Added return type for lifecycle method
     this.customerService.currentProduct.subscribe(product => this.single_product_id = product)
     this.user_id = Number(sessionStorage.getItem('user_session_id'));
     this.productDetail(this.single_product_id);
     this.userAddress(this.user_id);
   }
 
-  productDetail(single_product_id) {
+  productDetail(single_product_id: number): void { // Added parameter type and return type
     this.customerService.individualProduct(single_product_id).subscribe(data => {
       this.individual_product = data;
       // console.log("One Product", this.individual_product);
@@ -35,7 +36,8 @@ export class CheckoutComponent implements OnInit {
       console.log("My error", error);
     })
   }
-  userAddress(user_id) {
+  
+  userAddress(user_id: number): void { // Added parameter type and return type
     this.customerService.userDetail(user_id).subscribe(data => {
       // this.user_detail = data.address;
       this.user_address = data.address;
@@ -45,7 +47,7 @@ export class CheckoutComponent implements OnInit {
     })
   }
 
-  placeOrder() {
+  placeOrder(): void { // Added return type
     this.order_dto = {
       id: 0,
       userId: this.user_id,
@@ -78,7 +80,5 @@ export class CheckoutComponent implements OnInit {
     }, err => {
       alert("Some Error Occured");
     })
-
   }
-
 }

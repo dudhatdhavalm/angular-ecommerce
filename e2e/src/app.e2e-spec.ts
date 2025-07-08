@@ -8,9 +8,10 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
-    page.navigateTo();
-    expect(page.getTitleText()).toEqual('Welcome to angular-ecommerce!');
+  // Updated to use async/await syntax for Angular 12 compatibility
+  it('should display welcome message', async () => {
+    await page.navigateTo();
+    expect(await page.getTitleText()).toEqual('Welcome to angular-ecommerce!');
   });
 
   afterEach(async () => {

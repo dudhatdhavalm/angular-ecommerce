@@ -61,7 +61,13 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  // Updated RouterModule.forRoot() to include the newer Angular 12 syntax
+  // The useHash option is still maintained
+  imports: [RouterModule.forRoot(routes, { useHash: true, relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule { 
+  // If this module had any static methods returning ModuleWithProviders,
+  // we would add the generic type parameter like:
+  // static forRoot(): ModuleWithProviders<AppRoutingModule> { ... }
+}

@@ -11,14 +11,16 @@ import { User } from '../../core/models/object-model';
 })
 export class SigninSignupComponent implements OnInit {
 
-  regForm: Boolean = false;
-  signUpform: FormGroup;
-  signInform: FormGroup;
+  // Changed Boolean to lowercase boolean for TypeScript strict mode compliance
+  regForm = false;
+  signUpform!: FormGroup; // Added non-null assertion operator for strict mode
+  signInform!: FormGroup; // Added non-null assertion operator for strict mode
   signUpsubmitted = false;
-  href: String = '';
-  user_data;
-  user_dto: User;
-  user_reg_data;
+  // Changed String type to standard string type
+  href = '';
+  user_data: any; // Added explicit type for strict mode
+  user_dto!: User; // Added non-null assertion operator for strict mode
+  user_reg_data: any; // Added explicit type for strict mode
 
   signInFormValue: any = {};
 
@@ -50,12 +52,11 @@ export class SigninSignupComponent implements OnInit {
       uploadPhoto: ['', Validators.required],
       agreetc: ['', Validators.required],
       role: ['', Validators.required],
-
-    })
+    });
 
     this.signInform = this.formBuilder.group({
-
-    })
+      // Empty form group initialization remains the same
+    });
   }
 
   get rf() { return this.signUpform.controls; }
@@ -131,5 +132,4 @@ export class SigninSignupComponent implements OnInit {
       console.log("My error", error);
     })
   }
-
 }

@@ -9,15 +9,19 @@ import { LoginSignupService } from '../../shared/services/login-signup.service';
 })
 export class AdminLoginComponent implements OnInit {
 
-  signInFormValue: any = {};
-  user_data;
+  // Added explicit type for form value object instead of using 'any'
+  signInFormValue: {userEmail?: string, userPassword?: string} = {};
+  // Added explicit type for user_data
+  user_data: any[] | undefined;
 
   constructor(private router: Router, private logsign_service: LoginSignupService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    // Added return type to ngOnInit as per Angular 12 best practices
   }
 
-  onSubmitSignIn() {
+  onSubmitSignIn(): void {
+    // Added return type to method as per Angular 12 best practices
     // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.signInFormValue));
     this.logsign_service.adminLogin(this.signInFormValue.userEmail, this.signInFormValue.userPassword).subscribe(data => {
       this.user_data = data;

@@ -9,9 +9,12 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  logged_in: Boolean = false;
-  language: String = 'English';
-  user_role: String;
+  // Changed Boolean to boolean (lowercase) for primitive type
+  logged_in = false;
+  // Changed String to string (lowercase) for primitive type
+  language: string = 'English';
+  // Changed String to string (lowercase) for primitive type
+  user_role?: string;
 
   constructor(private translate: TranslateService, private router: Router) { }
 
@@ -22,7 +25,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngDoCheck() {
-    this.user_role = sessionStorage.getItem("role");
+    this.user_role = sessionStorage.getItem("role") || undefined;
     // console.log(this.user_role);
     
     const user_session_id = sessionStorage.getItem("user_session_id")

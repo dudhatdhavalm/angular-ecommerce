@@ -15,9 +15,12 @@ exports.config = {
   capabilities: {
     'browserName': 'chrome'
   },
+  // Angular 12 upgrade: Setting directConnect to true for better performance
   directConnect: true,
   baseUrl: 'http://localhost:4200/',
   framework: 'jasmine',
+  // Angular 12 upgrade: Disabling Selenium Promise Manager for modern async/await pattern
+  SELENIUM_PROMISE_MANAGER: false,
   jasmineNodeOpts: {
     showColors: true,
     defaultTimeoutInterval: 30000,

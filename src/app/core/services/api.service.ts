@@ -18,7 +18,8 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   private formatErrors(error: any) {
-    return throwError(error.error);
+    // Updated to use the recommended pattern for throwError in RxJS 6.6.7
+    return throwError(() => error.error);
   }
 
   get(path: string, params: HttpParams = new HttpParams()): Observable<any> {
@@ -37,8 +38,8 @@ export class ApiService {
       .pipe(catchError(this.formatErrors));
   }
 
-  delete(path): Observable<any> {
+  // Updated method signature to include type for path parameter
+  delete(path: string): Observable<any> {
     return this.http.delete(path).pipe(catchError(this.formatErrors));
   }
 }
-

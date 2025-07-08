@@ -15,11 +15,13 @@ export class UserService {
   constructor(private apiService: ApiService, private http: HttpClient) { }
 
   //get data of individual user
-  getUserData(user_id) {
+  // Updated parameter to include type for TypeScript strict mode compatibility in Angular 12
+  getUserData(user_id: string): Observable<any> {
     return this.apiService.get(this.user_url + user_id);
   }
   //update data of individual user
-  updateUserData(user_id, user_dto): Observable<any> {
+  // Updated parameters to include types for TypeScript strict mode compatibility in Angular 12
+  updateUserData(user_id: string, user_dto: any): Observable<any> {
     return this.apiService.put(this.user_url + user_id, user_dto);
   }
 }
